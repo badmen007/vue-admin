@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-  const sayHi = () => {
-    console.log('hi')
-  }
+const sayHi = () => {
+  console.log('hi')
+}
 </script>
 
 <style lang="scss">

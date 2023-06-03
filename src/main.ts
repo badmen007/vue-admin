@@ -14,7 +14,6 @@ import '@/styles/index.scss'
 import initSvgIcon from '@/icons/index.ts'
 import 'virtual:svg-icons-register'
 
-
 const app = createApp(App)
 app.use(ElementPlus)
 
