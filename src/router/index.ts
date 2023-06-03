@@ -11,9 +11,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import(/* webpackChunkName: 'dashboard' */ '@/views/dashboard/index.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: 'dashboard' */ '@/views/dashboard/index.vue'
+          ),
         meta: {
-          title: 'Dashboard', // 需要配置申明文件否则无提示
+          title: 'Dashboard' // 需要配置申明文件否则无提示
         }
       }
     ]
