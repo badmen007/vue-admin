@@ -14,9 +14,13 @@ import '@/styles/index.scss'
 import initSvgIcon from '@/icons/index.ts'
 import 'virtual:svg-icons-register'
 
+// 注册element-plus
+import installElementPlus from './plugins/element'
+
 const app = createApp(App)
 app.use(ElementPlus)
 
+app.use(installElementPlus)
 // 注册svg-icon组件
 app.use(initSvgIcon)
 app.use(router)

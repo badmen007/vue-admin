@@ -10,7 +10,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-essential',
-    '@vue/prettier'
+    '@vue/prettier',
+    './.eslintrc-auto-import.json'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -32,6 +33,7 @@ module.exports = {
         useTabs: false, // 不使用tab缩进
         endOfLine: 'auto' // 自动识别换行是LF还是CRLF，默认prettier是LF
       }
-    ]
+    ],
+    '@typescript-eslint/no-non-null-assertion': 'off',
   }
 }

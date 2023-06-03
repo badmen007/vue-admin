@@ -1,10 +1,10 @@
 <template>
   <div class="app-wrapper">
-    <div class="sidebar-container"></div>
+    <div class="sidebar-container">sidebar</div>
     <div class="main-container">
       <div class="header">
-        <div class="navbar"></div>
-        <div class="tags-view"></div>
+        <div class="navbar">navbar</div>
+        <div class="tags-view">tags</div>
       </div>
       <div class="app-main">
         <h2>app main</h2>

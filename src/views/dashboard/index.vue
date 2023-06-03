@@ -7,12 +7,18 @@
       class-name="custom-class"
       @click="sayHi"
     ></svg-icon>
+    <br />
+    <br />
+    <br />
+    <el-button>按钮</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+const { proxy } = getCurrentInstance()!
+
 const sayHi = () => {
-  console.log('hi')
+  proxy?.$message.success('这是一条成功消息')
 }
 </script>
 
