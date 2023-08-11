@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { isExternal } from "../../utils/validate"
+import { isExternal } from "@/utils/validate"
 import { computed } from "vue"
 const props = defineProps<{ iconClass: string; className?: string }>()
 // 是否是带协议的图片链接
