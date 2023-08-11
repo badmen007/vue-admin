@@ -1,6 +1,7 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import path from "path"
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,5 +13,14 @@ export default defineConfig({
       }
     ]
   },
-  plugins: [vue()]
+  plugins: [
+    vue(),
+    // svg相关配置
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
+      symbolId: "icon-[name]", // symbol的id名称
+      inject: "body-last", // 插入的位置
+      customDomId: "__svg__icons__dom__" // svg的id
+    })
+  ]
 })

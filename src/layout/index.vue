@@ -8,7 +8,7 @@
       </div>
       <div class="app-main">
         <h2>app main</h2>
-        <route-view></route-view>
+        <router-view></router-view>
       </div>
     </div>
   </div>
