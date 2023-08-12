@@ -1,7 +1,13 @@
 <template>
   <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
-    <template v-if="theOnlyOneChildRoute">
+    <template
+      v-if="
+        theOnlyOneChildRoute &&
+        (!theOnlyOneChildRoute.children ||
+          theOnlyOneChildRoute.noShowingChildren)
+      "
+    >
       <sidebar-item-link
         :to="resolvePath(theOnlyOneChildRoute.path)"
         v-if="theOnlyOneChildRoute.meta"
@@ -65,7 +71,9 @@ const showingChildNumber = computed(() => {
 // 要渲染的单个路由 如果该路由只有一个子路由 默认直接渲染这个子路由
 // theOnlyOneChildRoute直接通过el-menu-item组件来渲染
 const { item } = toRefs(props)
-const theOnlyOneChildRoute = computed(() => {
+const theOnlyOneChildRoute = computed<
+  (RouteRecordRaw & { noShowingChildren?: boolean }) | null
+>(() => {
   // 多个children时 直接return null 多children需要用el-submenu来渲染并递归
   if (showingChildNumber.value > 1) {
     return null
@@ -85,7 +93,8 @@ const theOnlyOneChildRoute = computed(() => {
   // 无可渲染children时 把当前路由item作为仅有的子路由渲染
   return {
     ...props.item,
-    path: "" // resolvePath避免resolve拼接时 拼接重复
+    path: "", // resolvePath避免resolve拼接时 拼接重复
+    noShowingChildren: true
   }
 })
 // menu icon
