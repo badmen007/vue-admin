@@ -8,5 +8,22 @@
     .el-menu {
       border: none;
     }
+    // 菜单收起时的样式调整
+    .el-menu--collapse {
+      // 隐藏submenu title
+      .submenu-title {
+        display: none;
+      }
+    }
+    .el-submenu {
+      .el-menu {
+        .el-menu-item {
+          background-color: $subMenuBg !important;
+          &:hover {
+            background-color: $subMenuHover !important;
+          }
+        }
+      }
+    }
   }
 }

@@ -19,12 +19,12 @@ $subMenuHover: #001528;
 $sideBarWidth: 210px;
 // 导出变量提供给js来使用
 :export {
-menuText: $menuText;
-menuActiveText: $menuActiveText;
-subMenuActiveText: $subMenuActiveText;
-menuBg: $menuBg;
-menuHover: $menuHover;
-subMenuBg: $subMenuBg;
-subMenuHover: $subMenuHover;
-sideBarWidth: $sideBarWidth;
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
 }

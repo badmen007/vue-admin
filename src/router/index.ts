@@ -30,7 +30,11 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: "index",
         name: "Guide",
         component: () =>
-          import(/* webpackChunkName: "guide" */ "@/views/guide/index.vue")
+          import(/* webpackChunkName: "guide" */ "@/views/guide/index.vue"),
+        meta: {
+          title: "Guide",
+          icon: "guide"
+        }
       }
     ]
   },
@@ -48,8 +52,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
         meta: {
-          title: "Menu Management",
-          icon: "list"
+          title: "Menu Management"
         }
       },
       {
@@ -57,8 +60,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "role" */ "@/views/system/role.vue"),
         meta: {
-          title: "Role Management",
-          icon: "list"
+          title: "Role Management"
         }
       },
       {
@@ -66,8 +68,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "role" */ "@/views/system/user.vue"),
         meta: {
-          title: "User Management",
-          icon: "list"
+          title: "User Management"
         }
       }
     ]
@@ -88,7 +89,8 @@ const constantRoutes: Array<RouteRecordRaw> = [
             /* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"
           ),
         meta: {
-          title: "Dashboard"
+          title: "Dashboard",
+          icon: "dashboard"
         }
       }
     ]

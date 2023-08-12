@@ -10,12 +10,18 @@
     :collapse="isCollapse"
     :collapse-transition="true"
   >
-    <sidebar-item></sidebar-item>
+    <sidebar-item
+      v-for="route in menuRoutes"
+      :key="route.path"
+      :item="route"
+      :base-path="route.path"
+    ></sidebar-item>
   </el-menu>
 </template>
 
 <script setup lang="ts">
 import scssVariables from "@/styles/variables.module.scss"
+import { routes } from "@/router"
 
 const route = useRoute()
 
@@ -25,4 +31,6 @@ const activeMenu = computed(() => {
 })
 
 const isCollapse = ref(false)
+
+const menuRoutes = computed(() => routes)
 </script>
