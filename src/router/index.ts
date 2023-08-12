@@ -34,7 +34,9 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
           import(/* webpackChunkName: "guide" */ "@/views/guide/index.vue"),
         meta: {
           title: "Guide",
-          icon: "guide"
+          icon: "guide",
+          // 默认加载Guide时，/documentation/index高亮显示
+          activeMenu: "/documentation/index"
         }
       }
     ]
