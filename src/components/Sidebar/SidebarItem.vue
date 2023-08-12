@@ -2,18 +2,20 @@
   <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
     <template v-if="theOnlyOneChildRoute">
-      <!-- 如果没有meta属性意味着不必渲染了 -->
-      <el-menu-item
-        :index="resolvePath(theOnlyOneChildRoute.path)"
+      <sidebar-item-link
+        :to="resolvePath(theOnlyOneChildRoute.path)"
         v-if="theOnlyOneChildRoute.meta"
       >
-        <el-icon v-if="icon">
-          <svg-icon class="menu-icon" :icon-class="icon"></svg-icon>
-        </el-icon>
-        <template #title>
-          <span>{{ theOnlyOneChildRoute.meta?.title }}</span>
-        </template>
-      </el-menu-item>
+        <!-- 如果没有meta属性意味着不必渲染了 -->
+        <el-menu-item :index="resolvePath(theOnlyOneChildRoute.path)">
+          <el-icon v-if="icon">
+            <svg-icon class="menu-icon" :icon-class="icon"></svg-icon>
+          </el-icon>
+          <template #title>
+            <span>{{ theOnlyOneChildRoute.meta?.title }}</span>
+          </template>
+        </el-menu-item>
+      </sidebar-item-link>
     </template>
     <!-- 多个子路由时 -->
     <el-sub-menu v-else :index="resolvePath(item.path)" popper-appendto-body>
@@ -38,6 +40,7 @@
 import type { PropType } from "vue"
 import type { RouteRecordRaw } from "vue-router"
 import path from "path-browserify"
+import { isExternal } from "@/utils/validate"
 const props = defineProps({
   item: {
     type: Object as PropType<RouteRecordRaw>,
@@ -79,7 +82,7 @@ const theOnlyOneChildRoute = computed(() => {
     }
   }
   // showingChildNumber === 0 无可渲染的子路由 （可能有子路由 hidden属性为true）
-  // 无可渲染chiildren时 把当前路由item作为仅有的子路由渲染
+  // 无可渲染children时 把当前路由item作为仅有的子路由渲染
   return {
     ...props.item,
     path: "" // resolvePath避免resolve拼接时 拼接重复
@@ -96,6 +99,9 @@ const icon = computed(() => {
 // 利用path.resolve 根据父路径+子路径 解析成正确路径 子路径可能是相对的
 // resolvePath在模板中使用
 const resolvePath = (childPath: string) => {
+  if (isExternal(childPath)) {
+    return childPath
+  }
   return path.resolve(props.basePath, childPath)
 }
 </script>
