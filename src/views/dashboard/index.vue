@@ -7,12 +7,17 @@
       class-name="custom-class"
       @click="sayHi"
     ></svg-icon>
+    <br />
+    <br />
+    <el-button>点击</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+// import { getCurrentInstance } from "vue"
+const { proxy } = getCurrentInstance()!
 const sayHi = () => {
-  console.log("hi")
+  proxy?.$message.success("恭喜你，这是一条成功的消息")
 }
 </script>
 

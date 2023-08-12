@@ -15,7 +15,10 @@ import App from "./App.vue"
 import router from "./router"
 import initSvgIcon from "@/icons/index"
 
+import installElementPlus from "./plugins/element"
+
 const app = createApp(App)
+app.use(installElementPlus)
 app.use(router)
 app.use(createPinia())
 app.use(ElementPlus)
