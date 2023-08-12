@@ -7,7 +7,7 @@
     :background-color="scssVariables.menuBg"
     :text-color="scssVariables.menuText"
     :active-text-color="scssVariables.menuActiveText"
-    :collapse="isCollapse"
+    :collapse="sidebar.opened"
     :collapse-transition="true"
   >
     <sidebar-item
@@ -22,6 +22,11 @@
 <script setup lang="ts">
 import scssVariables from "@/styles/variables.module.scss"
 import { routes } from "@/router"
+import { useAppStore } from "@/stores/app"
+import { storeToRefs } from "pinia"
+
+const store = useAppStore()
+const { sidebar } = storeToRefs(store)
 
 const route = useRoute()
 
