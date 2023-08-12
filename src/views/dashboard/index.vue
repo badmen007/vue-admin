@@ -9,6 +9,7 @@
     ></svg-icon>
     <br />
     <br />
+    缓存测试 <input type="text" />
     <el-button>点击</el-button>
   </div>
 </template>

@@ -8,10 +8,11 @@
         <div class="navbar">navbar</div>
         <div class="tags-view">tagsview</div>
       </div>
-      <div class="app-main">
+      <!-- <div class="app-main">
         <h2>app main</h2>
         <router-view></router-view>
-      </div>
+      </div> -->
+      <app-main></app-main>
     </div>
   </div>
 </template>

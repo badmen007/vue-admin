@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppMain: typeof import('./layout/components/AppMain.vue')['default']
     Counter: typeof import('./components/Counter/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -16,9 +17,9 @@ declare module 'vue' {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sidebar: typeof import('./components/Sidebar/index.vue')['default']
-    SidebarItem: typeof import('./components/Sidebar/SidebarItem.vue')['default']
-    SidebarItemLink: typeof import('./components/Sidebar/SidebarItemLink.vue')['default']
-    SvgIcon: typeof import('./components/SvgIcon/index.vue')['default']
+    Sidebar: typeof import('./layout/components/Sidebar/index.vue')['default']
+    SidebarItem: typeof import('./layout/components/Sidebar/SidebarItem.vue')['default']
+    SidebarItemLink: typeof import('./layout/components/Sidebar/SidebarItemLink.vue')['default']
+    SvgIcon: typeof import('./layout/components/SvgIcon/index.vue')['default']
   }
 }
