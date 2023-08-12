@@ -45,7 +45,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: "/system/user",
     meta: {
       title: "System",
-      icon: "lock"
+      icon: "lock",
+      alwaysShow: true // 始终显示，哪怕是只有一个子路由
     },
     children: [
       {
