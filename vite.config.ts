@@ -10,6 +10,8 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
 import ElementPlus from "unplugin-element-plus/vite"
 
+import DefineOptions from "unplugin-vue-define-options/vite"
+
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -43,6 +45,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     // element-plus
-    ElementPlus({})
+    ElementPlus({}),
+    DefineOptions()
   ]
 })

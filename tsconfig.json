@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "types": ["unplugin-vue-define-options/macros-global"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -24,6 +25,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "node_modules/element-plus/global.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "node_modules/element-plus/global.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
