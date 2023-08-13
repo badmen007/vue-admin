@@ -1,5 +1,9 @@
 import { defineStore } from "pinia"
-import { RouteLocationNormalized, RouteLocationNormalizedLoaded, RouteRecordName } from "vue-router"
+import {
+  RouteLocationNormalized,
+  RouteLocationNormalizedLoaded,
+  RouteRecordName
+} from "vue-router"
 export const useTagsView = defineStore("tag", () => {
   const visitedViews = ref<RouteLocationNormalizedLoaded[]>([])
   // 添加视图
