@@ -2,6 +2,9 @@
   <div class="navbar">
     <hambuger @toggleClick="toggleClick" :is-active="sidebar.opened" />
     <breadcrumb></breadcrumb>
+    <div class="right-menu">
+      <screenfull class="right-menu-item hover-effect"></screenfull>
+    </div>
   </div>
 </template>
 
@@ -18,6 +21,13 @@ const toggleClick = () => {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  display: flex;
+  .right-menu {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+  }
 }
 </style>

@@ -22,6 +22,9 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^3.2.0
     version: registry.npmmirror.com/pinia-plugin-persistedstate@3.2.0(pinia@2.1.6)
+  screenfull:
+    specifier: ^6.0.2
+    version: registry.npmmirror.com/screenfull@6.0.2
   unplugin-element-plus:
     specifier: ^0.8.0
     version: registry.npmmirror.com/unplugin-element-plus@0.8.0
@@ -4522,6 +4525,13 @@ packages:
       immutable: registry.npmmirror.com/immutable@4.3.2
       source-map-js: registry.npmmirror.com/source-map-js@1.0.2
     dev: true
+
+  registry.npmmirror.com/screenfull@6.0.2:
+    resolution: {integrity: sha512-AQdy8s4WhNvUZ6P8F6PB21tSPIYKniic+Ogx0AacBMjKP1GUHN2E9URxQHtCusiwxudnCKkdy4GrHXPPJSkCCw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/screenfull/-/screenfull-6.0.2.tgz}
+    name: screenfull
+    version: 6.0.2
+    engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
 
   registry.npmmirror.com/scule@1.0.0:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/scule/-/scule-1.0.0.tgz}
