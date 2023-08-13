@@ -13,6 +13,9 @@ dependencies:
   path-browserify:
     specifier: ^1.0.1
     version: registry.npmmirror.com/path-browserify@1.0.1
+  path-to-regexp:
+    specifier: ^6.2.1
+    version: registry.npmmirror.com/path-to-regexp@6.2.1
   pinia:
     specifier: ^2.1.6
     version: registry.npmmirror.com/pinia@2.1.6(typescript@5.0.2)(vue@3.3.4)
@@ -4085,6 +4088,12 @@ packages:
     name: path-parse
     version: 1.0.7
     dev: true
+
+  registry.npmmirror.com/path-to-regexp@6.2.1:
+    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/path-to-regexp/-/path-to-regexp-6.2.1.tgz}
+    name: path-to-regexp
+    version: 6.2.1
+    dev: false
 
   registry.npmmirror.com/path-type@4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/path-type/-/path-type-4.0.0.tgz}
