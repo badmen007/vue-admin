@@ -27,6 +27,9 @@ const toggleClick = () => {
 <style lang="scss" scoped>
 .navbar {
   display: flex;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 21, 41, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .right-menu {
     flex: 1;
     display: flex;

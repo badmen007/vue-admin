@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@element-plus/icons-vue':
+    specifier: ^2.1.0
+    version: registry.npmmirror.com/@element-plus/icons-vue@2.1.0(vue@3.3.4)
   '@types/path-browserify':
     specifier: ^1.0.0
     version: registry.npmmirror.com/@types/path-browserify@1.0.0
