@@ -119,6 +119,11 @@ const constantRoutes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/login/index.vue")
+  },
+  {
     path: "/redirect",
     component: Layout,
     meta: {
