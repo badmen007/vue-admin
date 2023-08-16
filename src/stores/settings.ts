@@ -6,7 +6,11 @@ export const useSettingsStore = defineStore(
   "settings",
   () => {
     // theme是用户选择的主题
-    const settings = reactive({ theme: variables.theme, originalTheme: "" })
+    const settings = reactive({
+      theme: variables.theme,
+      originalTheme: "",
+      tagsView: true
+    })
 
     type ISettings = typeof settings
     type ValueOf<T> = T[keyof T]
@@ -19,7 +23,9 @@ export const useSettingsStore = defineStore(
       key: keyof ISettings
       value: ValueOf<ISettings>
     }) => {
-      settings[key] = value
+      if (key in settings) {
+        ;(settings[key] as ValueOf<ISettings>) = value
+      }
     }
 
     return { settings, changeSetting }
@@ -27,7 +33,7 @@ export const useSettingsStore = defineStore(
   {
     persist: {
       storage: window.sessionStorage,
-      paths: ["settings.theme"]
+      paths: ["settings.theme", "settings.tagsView"]
     }
   }
 )
