@@ -54,6 +54,7 @@
 </template>
 <script lang="ts" setup>
 import { FormInstance } from "element-plus"
+import { useUserStore } from "@/stores/user"
 const loading = ref(false)
 // form ref
 const loginFormRef = ref<FormInstance | null>(null)
@@ -73,10 +74,20 @@ const loginState = reactive({
   }
 })
 
+const userStore = useUserStore()
+const router = useRouter()
 const handleLogin = () => {
-  loginFormRef.value?.validate((valid) => {
+  loginFormRef.value?.validate(async (valid) => {
     if (valid) {
-      console.log(loginState.loginForm)
+      loading.value = true
+      try {
+        await userStore.login(loginState.loginForm)
+        router.push({ path: "/" })
+      } finally {
+        loading.value = false
+      }
+    } else {
+      console.log("error submit!!")
     }
   })
 }
