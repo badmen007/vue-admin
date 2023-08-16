@@ -1,5 +1,5 @@
 <template>
-  <h4 @click="isCollapse = !isCollapse">展收测试</h4>
+  <logo v-if="showLogo" :collapse="isCollapse" />
   <el-menu
     class="sidebar-container-menu"
     mode="vertical"
@@ -39,11 +39,14 @@ const activeMenu = computed(() => {
   }
   return path
 })
-const isCollapse = ref(false)
 
 const menuRoutes = computed(() => routes)
 
 // 获取主题色
 const settingStore = useSettingsStore()
 const themeColor = computed(() => settingStore.settings.theme)
+
+const showLogo = computed(() => settingStore.settings.sidebarLogo)
+// 展开收起状态 稍后放store 当前是展开就让它收起
+const isCollapse = computed(() => store.sidebar.opened)
 </script>

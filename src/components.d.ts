@@ -29,6 +29,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Hambuger: typeof import('./components/Hambuger/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Logo: typeof import('./layout/components/Sidebar/Logo.vue')['default']
     Navbar: typeof import('./layout/components/Navbar.vue')['default']
     RightPanel: typeof import('./components/RightPanel/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

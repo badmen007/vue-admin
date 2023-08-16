@@ -8,6 +8,10 @@
       <span>Open Tags-View</span>
       <el-switch v-model="tagsView" class="drawer-switch" />
     </div>
+    <div class="drawer-item">
+      <span>Sidebar Logo</span>
+      <el-switch v-model="showSidebarLogo" class="drawer-switch" />
+    </div>
   </div>
 </template>
 
@@ -21,6 +25,18 @@ const tagsView = computed({
   set(val) {
     settingStore.changeSetting({
       key: "tagsView",
+      value: val
+    })
+  }
+})
+
+const showSidebarLogo = computed({
+  get() {
+    return settingStore.settings.showSidebarLogo
+  },
+  set(val) {
+    settingStore.changeSetting({
+      key: "sidebarLogo",
       value: val
     })
   }
