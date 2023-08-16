@@ -48,6 +48,7 @@ const otherHeight = computed(() => (showSetting.value ? 84 : 50) + "px")
   height: 100%;
 
   .main-container {
+    overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
