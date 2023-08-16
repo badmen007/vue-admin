@@ -11,6 +11,10 @@
           v-for="(tag, index) in visitedViews"
           :key="index"
           :to="{ path: tag.path, query: tag.query }"
+          :style="{
+            backgroundColor: isActive(tag) ? themeColor : '',
+            borderColor: isActive(tag) ? themeColor : ''
+          }"
         >
           <el-dropdown
             trigger="contextmenu"
@@ -53,6 +57,7 @@ import { CloseBold } from "@element-plus/icons-vue"
 
 import path from "path-browserify"
 import { routes } from "@/router"
+import { useSettingsStore } from "@/stores/settings"
 
 const store = useTagsView()
 const { visitedViews } = storeToRefs(store)
@@ -185,6 +190,10 @@ const refreshSelectedTag = async (view: RouteLocationNormalized) => {
   // router.push(view.path) // 无法刷新页面，因为页面没有任何变化
   router.push("/redirect" + view.path) // 跳转重定向路由
 }
+
+// 获取主题色
+const settingStore = useSettingsStore()
+const themeColor = computed(() => settingStore.settings.theme)
 
 onMounted(() => {
   initTags()
