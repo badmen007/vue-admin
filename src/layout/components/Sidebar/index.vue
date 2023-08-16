@@ -50,3 +50,4 @@ const showLogo = computed(() => settingStore.settings.sidebarLogo)
 // 展开收起状态 稍后放store 当前是展开就让它收起
 const isCollapse = computed(() => store.sidebar.opened)
 </script>
+<style lang="scss" scoped></style>

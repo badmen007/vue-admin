@@ -3,6 +3,7 @@
     <slot />
   </el-scrollbar>
 </template>
+
 <style lang="scss">
 .scroll-wrapper {
   position: relative;
