@@ -1,12 +1,23 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+      ref="loginFormRef"
+    >
       <div class="admin-logo">
         <img class="logo" src="../../assets/vue.svg" alt="logo" />
         <h1 class="name">Vue3 Admin</h1>
       </div>
       <el-form-item prop="username">
-        <el-input placeholder="请输入用户名">
+        <el-input
+          placeholder="请输入用户名"
+          v-model="loginForm.username"
+          ref="usernameRef"
+          autocomplete="off"
+          tabindex="1"
+        >
           <template #prepend>
             <span class="svg-container">
               <svg-icon icon-class="user"></svg-icon>
@@ -18,8 +29,10 @@
         <el-input
           type="password"
           placeholder="请输入密码"
-          autocomplete="on"
+          autocomplete="off"
           show-password
+          v-model="loginForm.password"
+          tabindex="2"
         >
           <template #prepend>
             <span class="svg-container">
@@ -40,10 +53,45 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { FormInstance } from "element-plus"
 const loading = ref(false)
+// form ref
+const loginFormRef = ref<FormInstance | null>(null)
+// form username ref
+const usernameRef = ref<HTMLInputElement | null>(null)
+// form password ref
+const passwordRef = ref<HTMLInputElement | null>(null)
+
+const loginState = reactive({
+  loginForm: {
+    username: "",
+    password: ""
+  },
+  loginRules: {
+    username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
+    password: [{ required: true, trigger: "blur", message: "请输入密码" }]
+  }
+})
+
 const handleLogin = () => {
-  console.log("login")
+  loginFormRef.value?.validate((valid) => {
+    if (valid) {
+      console.log(loginState.loginForm)
+    }
+  })
 }
+
+// 解构
+const { loginForm, loginRules } = toRefs(loginState)
+
+// 自动获取焦点
+onMounted(() => {
+  if (loginState.loginForm.username === "") {
+    usernameRef.value?.focus()
+  } else if (loginState.loginForm.password === "") {
+    passwordRef.value?.focus()
+  }
+})
 </script>
 <style lang="scss">
 $bg: #283443;
