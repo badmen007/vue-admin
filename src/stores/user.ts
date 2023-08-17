@@ -1,11 +1,13 @@
 import { defineStore } from "pinia"
 import { login as loginApi } from "@/api/user"
-import { setToken } from "@/utils/auth"
+import { removeToken, setToken } from "@/utils/auth"
 
 export interface IUserInfo {
   username: string
   password: string
 }
+
+import { useTagsView } from "./tagsView"
 
 export const useUserStore = defineStore("user", () => {
   const state = reactive({
@@ -24,5 +26,15 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { state, login }
+  const { delAllView } = useTagsView()
+  const logout = () => {
+    // 清空store中的token
+    state.token = ""
+    // 清空localStorage中的token
+    removeToken()
+    // 清除所有tag views
+    delAllView()
+  }
+
+  return { state, login, logout }
 })

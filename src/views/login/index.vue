@@ -55,7 +55,7 @@
 <script lang="ts" setup>
 import { FormInstance } from "element-plus"
 import { useUserStore } from "@/stores/user"
-import useRouteQuery from "@/hook/useRouteQuery"
+import useRouteQuery from "@/hooks/useRouteQuery"
 
 const loading = ref(false)
 // form ref
@@ -78,6 +78,7 @@ const loginState = reactive({
 
 const userStore = useUserStore()
 const router = useRouter()
+const { proxy } = getCurrentInstance()!
 
 const { redirect, otherQuery } = useRouteQuery()
 const handleLogin = () => {
@@ -86,6 +87,7 @@ const handleLogin = () => {
       loading.value = true
       try {
         await userStore.login(loginState.loginForm)
+        proxy?.$message.success("登录成功")
         router.push({
           path: redirect.value || "/",
           query: otherQuery.value

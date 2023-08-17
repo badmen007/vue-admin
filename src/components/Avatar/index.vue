@@ -21,8 +21,13 @@
 </template>
 <script lang="ts" setup>
 import avatar from "@/assets/vue.svg"
+import { useUserStore } from "@/stores/user"
+const store = useUserStore()
+const { proxy } = getCurrentInstance()!
 const logout = () => {
-  console.log("退出登录")
+  store.logout()
+  proxy?.$message.success("退出登录")
+  window.location.reload()
 }
 </script>
 <style lang="scss" scoped>
