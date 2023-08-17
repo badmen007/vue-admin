@@ -17,6 +17,7 @@ import router from "./router"
 import initSvgIcon from "@/icons/index"
 
 import installElementPlus from "./plugins/element"
+import "./permission"
 
 const app = createApp(App)
 const pinia = createPinia()

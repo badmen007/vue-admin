@@ -33,7 +33,7 @@
                 <el-dropdown-item command="other">关闭其他</el-dropdown-item>
                 <el-dropdown-item
                   command="self"
-                  v-if="!tagEmits || !tag.meta.affix"
+                  v-if="!tag.meta || !tag.meta.affix"
                   >关闭</el-dropdown-item
                 >
                 <el-dropdown-item command="refresh">刷新</el-dropdown-item>
