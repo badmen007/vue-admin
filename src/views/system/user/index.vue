@@ -80,8 +80,10 @@ import { IProfileQuery, useUserStore } from "@/stores/user"
 import { FormInstance } from "element-plus"
 import RightPanel from "@/components/RightPanel/index.vue"
 import EditorUser from "./components/editorUser.vue"
+import { useRoleStore } from "@/stores/role"
+import { RoleParams } from "@/api/config/role"
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance()!
 const store = useUserStore()
 
 // 查询表单ref
@@ -155,20 +157,25 @@ const panelTitle = computed(() =>
 )
 
 // 获取角色 添加和编辑用户都需要分配角色 这里是必选
-// const storeRole = useRoleStore()
-// storeRole.getRoles()
-// const roles = computed(() => storeRole.state.roles) // 稍后完善
+const storeRole = useRoleStore()
+storeRole.getRoles({} as RoleParams)
+const roles = computed(() => storeRole.state.roles) // 稍后完善
 
 // 添加用户
 const handleAddUser = () => {
   editType.value = 1
   editData.value = {} as Profile
+  editData.value.roles = roles.value! // 所有角色列表
+  editData.value.roleIds = [] // 所选角色id列表
   panelVisible.value = true
 }
 
 const handleEditUser = (index: number, row: Profile) => {
   editType.value = 0
   editData.value = { ...row }
+  // 获取当前编辑用户 现有角色列表
+  editData.value.roleIds = row.roles.map((item) => item.id)
+  editData.value.roles = roles.value! // 所有角色列表
   panelVisible.value = true
 }
 

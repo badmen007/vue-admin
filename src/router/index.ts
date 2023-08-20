@@ -64,7 +64,9 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: "role",
         name: "Role Management",
         component: () =>
-          import(/* webpackChunkName: "role" */ "@/views/system/role.vue"),
+          import(
+            /* webpackChunkName: "role" */ "@/views/system/role/index.vue"
+          ),
         meta: {
           title: "Role Management"
         }
