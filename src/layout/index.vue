@@ -66,7 +66,6 @@ const otherHeight = computed(() => (showSetting.value ? 84 : 50) + "px")
 
     .app-main {
       min-height: calc(100vh - v-bind(otherHeight));
-      background: red;
     }
   }
 }

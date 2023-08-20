@@ -1,5 +1,13 @@
 import { defineStore } from "pinia"
-import { login as loginApi } from "@/api/user"
+import {
+  getUsers as getUsersApi,
+  addUser as addUserApi,
+  removeUser as removeUserApi,
+  getUserInfo as getUserInfoApi,
+  updateUser as updateUserApi,
+  login as loginApi
+} from "@/api/config/user"
+import type { IUserQuery, IUsers, Profile, Role } from "@/api/config/user"
 import { removeToken, setToken } from "@/utils/auth"
 
 export interface IUserInfo {
@@ -7,11 +15,20 @@ export interface IUserInfo {
   password: string
 }
 
+export type IProfileQuery = Profile & {
+  pageNum?: number
+  pageSize?: number
+}
+
 import { useTagsView } from "./tagsView"
 
 export const useUserStore = defineStore("user", () => {
   const state = reactive({
-    token: ""
+    token: "",
+    userInfo: null as Profile | null,
+    users: [] as IUsers["users"],
+    count: 0,
+    roles: null as Role[] | null
   })
 
   const login = async (userInfo: IUserInfo) => {
@@ -41,5 +58,68 @@ export const useUserStore = defineStore("user", () => {
     removeToken()
   }
 
-  return { state, login, logout, resetToken }
+  // 获取全部用户
+  const getAllUsers = async (params: IUserQuery) => {
+    const res = await getUsersApi(params)
+    const { data } = res
+    state.users = data.users
+    state.count = data.count
+  }
+
+  // 添加用户
+  const addUser = async (data: IProfileQuery) => {
+    const { pageSize, pageNum, ...params } = data
+    const res = await addUserApi(params)
+    if (res.code === 0) {
+      getAllUsers({
+        pageSize,
+        pageNum
+      })
+    }
+  }
+
+  // 编辑用户
+  const editUser = async (data: IProfileQuery) => {
+    const { pageSize, pageNum, ...params } = data
+    const res = await updateUserApi(params.id, params)
+    if (res.code === 0) {
+      getAllUsers({
+        pageSize,
+        pageNum
+      })
+    }
+  }
+
+  // 删除用户
+  const removeUser = async (data: IProfileQuery) => {
+    const { pageSize, pageNum, id } = data
+    const res = await removeUserApi(id)
+    if (res.code === 0) {
+      getAllUsers({
+        pageSize,
+        pageNum
+      })
+    }
+  }
+
+  // 获取用户
+  const getUserInfo = async () => {
+    const res = await getUserInfoApi()
+    const { data } = res
+    const { roles, ...info } = data
+    state.userInfo = info as Profile
+    state.roles = roles
+  }
+
+  return {
+    state,
+    login,
+    logout,
+    resetToken,
+    getAllUsers,
+    addUser,
+    editUser,
+    removeUser,
+    getUserInfo
+  }
 })
