@@ -55,7 +55,9 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         path: "menu",
         name: "Menu Management",
         component: () =>
-          import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
+          import(
+            /* webpackChunkName: "menu" */ "@/views/system/menu/index.vue"
+          ),
         meta: {
           title: "Menu Management"
         }
