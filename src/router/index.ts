@@ -156,24 +156,24 @@ const constantRoutes: Array<RouteRecordRaw> = [
     path: "/login",
     name: "Login",
     component: () => import("@/views/login/index.vue")
+  },
+  {
+    path: "/profile",
+    component: Layout,
+    redirect: "/profile/index",
+    name: "ProfileLayout",
+    children: [
+      {
+        path: "index",
+        name: "Profile",
+        component: () => import("@/views/profile/index.vue"),
+        meta: {
+          hidden: true,
+          title: "个人中心"
+        }
+      }
+    ]
   }
-  // {
-  //   path: "/profile",
-  //   component: Layout,
-  //   redirect: "/profile/index",
-  //   name: "ProfileLayout",
-  //   children: [
-  //     {
-  //       path: "index",
-  //       name: "Profile",
-  //       component: () => import("@/views/profile/index.vue"),
-  //       meta: {
-  //         hidden: true,
-  //         title: "个人中心"
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 export const routes = constantRoutes // 默认只绑定常量路由
 

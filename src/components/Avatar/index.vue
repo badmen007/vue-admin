@@ -6,11 +6,16 @@
     </div>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item v-if="username">
+          <span style="display: block" :style="{ fontWeight: '500' }"
+            >用户名：{{ username }}</span
+          >
+        </el-dropdown-item>
         <router-link to="/">
           <el-dropdown-item>首页</el-dropdown-item>
         </router-link>
         <router-link to="/profile/index">
-          <el-dropdown-item>个人设置</el-dropdown-item>
+          <el-dropdown-item>个人中心</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided @click="logout">
           <span style="display: block">退出登录</span>
@@ -20,10 +25,14 @@
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-import avatar from "@/assets/vue.svg"
+import defaultAvatar from "@/assets/vue.svg"
 import { useUserStore } from "@/stores/user"
-const store = useUserStore()
 const { proxy } = getCurrentInstance()!
+const store = useUserStore()
+
+const userInfo = computed(() => store.state.userInfo)
+const avatar = computed(() => userInfo.value?.avatar || defaultAvatar)
+const username = computed(() => userInfo.value?.username || "")
 const logout = () => {
   store.logout()
   proxy?.$message.success("退出登录")
