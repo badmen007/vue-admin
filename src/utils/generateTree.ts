@@ -25,3 +25,36 @@ export const generateTree = (list: MenuData[]): ITreeItemData[] => {
   })
   return tree
 }
+
+type ITreeItemDataWithMeta = ITreeItemData & {
+  meta?: {
+    icon: string
+    title: string
+  }
+}
+type IMapWithMeta = Record<number | string, ITreeItemDataWithMeta>
+
+export const generateMenuTree = (list: MenuData[]): ITreeItemData[] => {
+  const map = list.reduce((prev, cur) => {
+    const temp = { ...cur }
+    prev[temp.id] = temp
+    return prev
+  }, {} as IMapWithMeta)
+  const tree: ITreeItemData[] = []
+  list.forEach((item) => {
+    const temp = map[item.id as number]
+    temp.meta = {
+      title: temp.title,
+      icon: temp.icon
+    }
+    const pid = temp.parent_id
+    if ((pid != null || pid !== 0) && map[pid]) {
+      const parent = map[pid]
+      if (!parent.children) parent.children = []
+      parent.children.push(temp)
+      return
+    }
+    tree.push(temp)
+  })
+  return tree
+}

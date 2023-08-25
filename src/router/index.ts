@@ -4,7 +4,7 @@ import Layout from "@/layout/index.vue"
 export const asyncRoutes: Array<RouteRecordRaw> = [
   {
     path: "/documentation",
-    component: Layout, // 布局组件作为以及路由
+    component: Layout, // 布局组件作为一级路由
     redirect: "/documentation/index",
     children: [
       {
@@ -16,8 +16,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
           ),
         meta: {
           title: "Documentation",
-          icon: "documentation",
-          hidden: false
+          icon: "documentation"
         }
       }
     ]
@@ -47,8 +46,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: "/system/user",
     meta: {
       title: "System",
-      icon: "lock",
-      alwaysShow: true // 始终显示，哪怕是只有一个子路由
+      icon: "lock"
     },
     children: [
       {
@@ -78,7 +76,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         name: "User Management",
         component: () =>
           import(
-            /* webpackChunkName: "role" */ "@/views/system/user/index.vue"
+            /* webpackChunkName: "user" */ "@/views/system/user/index.vue"
           ),
         meta: {
           title: "User Management"
@@ -87,11 +85,12 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    // 外链路由
     path: "/external-link",
     component: Layout,
     children: [
       {
-        path: "http://wwww.baidu.com",
+        path: "http://www.baidu.com/",
         redirect: "/",
         meta: {
           title: "External Link",
@@ -99,6 +98,14 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         }
       }
     ]
+  },
+  {
+    // 这里我们将匹配全部路由，放到异步路由中。
+    path: "/:pathMatch(.*)*",
+    redirect: "/404",
+    meta: {
+      hidden: true
+    }
   }
 ]
 
@@ -106,10 +113,10 @@ const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: Layout,
-    redirect: "dashboard",
+    redirect: "/dashboard",
     children: [
       {
-        path: "/dashboard",
+        path: "dashboard",
         name: "Dashboard",
         component: () =>
           import(
@@ -118,16 +125,10 @@ const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: "Dashboard",
           icon: "dashboard",
-          affix: true, // 固定标签
-          noCache: true // 不缓存
+          affix: true
         }
       }
     ]
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/views/login/index.vue")
   },
   {
     path: "/redirect",
@@ -138,18 +139,11 @@ const constantRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         // 带参数的动态路由正则匹配 文档说明
-        // https://next.router.vuejs.org/zh/guide/essentials/routematchingsyntax.html#%E5%8F%AF%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8F%82%E6%95%B0
+        // https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%8F%AF%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8F%82%E6%95%B0
         path: "/redirect/:path(.*)", // 要匹配多级路由 应该加*号
         component: () => import("@/views/redirect/index.vue")
       }
     ]
-  },
-  {
-    path: "/:pathMatch(.*)*",
-    redirect: "/404",
-    meta: {
-      hidden: true
-    }
   },
   {
     path: "/404",
@@ -157,10 +151,31 @@ const constantRoutes: Array<RouteRecordRaw> = [
     meta: {
       hidden: true // 404 hidden掉
     }
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/login/index.vue")
   }
+  // {
+  //   path: "/profile",
+  //   component: Layout,
+  //   redirect: "/profile/index",
+  //   name: "ProfileLayout",
+  //   children: [
+  //     {
+  //       path: "index",
+  //       name: "Profile",
+  //       component: () => import("@/views/profile/index.vue"),
+  //       meta: {
+  //         hidden: true,
+  //         title: "个人中心"
+  //       }
+  //     }
+  //   ]
+  // }
 ]
-
-export const routes = [...constantRoutes, ...asyncRoutes]
+export const routes = constantRoutes // 默认只绑定常量路由
 
 export default createRouter({
   history: createWebHistory(),

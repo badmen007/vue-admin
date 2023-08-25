@@ -74,6 +74,7 @@
 import { ActionRoleParams, useRoleStore } from "@/stores/role"
 import { IRole } from "@/api/config/role"
 import EditorRole from "./components/editorRole.vue"
+import { useMenuStore } from "@/stores/menu"
 
 const { proxy } = getCurrentInstance()!
 
@@ -192,6 +193,12 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   pageNum.value = val - 1 // 页码后端是从0开始的
 }
+
+const menuStore = useMenuStore()
+// 获取菜单列表
+onMounted(() => {
+  menuStore.getAllMenuList()
+})
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@ import { getAllMenus as getAllMenusApi } from "@/api/config/menu"
 import { getAccessByRoles as getAccessByRolesApi } from "@/api/config/roleAccess"
 import { MenuData } from "@/api/config/menu"
 import { defineStore } from "pinia"
-import { generateTree } from "@/utils/generateTree"
+import { generateTree, generateMenuTree } from "@/utils/generateTree"
 export interface ITreeItemData extends MenuData {
   children?: ITreeItemData[]
 }
@@ -34,15 +34,15 @@ export const useMenuStore = defineStore("menu", () => {
     const response = await getAllMenusApi()
     const { data } = response
     state.authMenuList = data // 权限菜单列表
-    // const treeData = generateMenuTree([...data])
-    // state.authMenuTreeData = treeData // 权限菜单树数据
+    const treeData = generateMenuTree([...data])
+    state.authMenuTreeData = treeData // 权限菜单树数据
   }
   const getAccessByRoles = async (roles: number[]) => {
     const response = await getAccessByRolesApi(roles)
     console.log(response, "response")
-    // const { access } = response.data
-    // const treeData = generateMenuTree([...access])
-    // state.authMenuTreeData = treeData
+    const { access } = response.data
+    const treeData = generateMenuTree([...access])
+    state.authMenuTreeData = treeData
   }
   return { state, getAllMenuList, getAllMenuListByAdmin, getAccessByRoles }
 })

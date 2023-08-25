@@ -21,13 +21,19 @@
 
 <script setup lang="ts">
 import scssVariables from "@/styles/variables.module.scss"
-import { routes } from "@/router"
 import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/stores/settings"
+import { useMenuStore } from "@/stores/menu"
 
 const store = useAppStore()
 const { sidebar } = storeToRefs(store)
+
+const menuStore = useMenuStore()
+
+const menuList = computed(() => menuStore.state.authMenuTreeData)
+
+const menuRoutes = computed(() => menuList.value)
 
 const route = useRoute()
 
@@ -39,8 +45,6 @@ const activeMenu = computed(() => {
   }
   return path
 })
-
-const menuRoutes = computed(() => routes)
 
 // 获取主题色
 const settingStore = useSettingsStore()

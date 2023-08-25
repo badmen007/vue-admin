@@ -97,6 +97,7 @@ import { MenuData } from "@/api/config/menu"
 const { proxy } = getCurrentInstance()!
 import { useReloadPage } from "@/hooks/useReload"
 import EditorMenu from "./components/editorMenu.vue"
+import { usePermissionStore } from "@/stores/permission"
 interface ITreeNode {
   id: number
   title: string
@@ -314,7 +315,7 @@ const allowDrag = (draggingNode: ITreeNode) => {
   const data = draggingNode.data
   return data.parent_id === 0 || data.parent_id == null
 }
-
+const { generateRoutes } = usePermissionStore()
 // 拖放完成事件
 const handleNodeDrop = async () => {
   menus.value.forEach((menu, index) => {
@@ -327,7 +328,11 @@ const handleNodeDrop = async () => {
     return temp
   })
   // 批量更新
-  await updateBulkMenu(menuList)
+  const res = await updateBulkMenu(menuList)
+  if (res.code === 0) {
+    // 重新生成菜单 1 代表是菜单排序更新
+    generateRoutes(1)
+  }
 }
 // 新增子菜单
 const handleCreateChildMenu = (data: ITreeItemData) => {
